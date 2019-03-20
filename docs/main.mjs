@@ -32,7 +32,7 @@ input.addEventListener( "keyup", () => {
 	let d = 1;
 	let approx = n / d;
 
-	while ( approx !== target && approximations.length < 50 ) {
+	while ( approx !== target && approximations.length < 250 ) {
 
 		z = 1 / ( z - Math.floor( z ) );
 		const dCopy = d;
@@ -41,7 +41,7 @@ input.addEventListener( "keyup", () => {
 		n = Math.round( target * d );
 		approx = n / d;
 
-		approximations.push( `${n}/${d} ${approx === target ? "=" : "≈"} ${format( target, approx )}` );
+		approximations.push( `${n}/${d} = ${format( target, approx )}` );
 
 	}
 
