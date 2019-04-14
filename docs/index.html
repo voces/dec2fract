@@ -1,16 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<title>Convert Decimals to Fractions</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<style>
+			body {
+				font-size: 150%;
+				overflow-x: hidden;
+				background-color: #f7f7f9;
+				font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+			}
+			header {
+				margin: -8px;
+				margin-bottom: 0.5em;
+				padding: 0.5em;
+				text-align: center;
+				box-shadow: 0.25em 0.25em 0.25em #ccc;
+				background-color: white;
+			}
+			input {
+				font-size: 100%;
+				padding: 0.25em;
+				width: calc( 100% - 0.5em - 2px );
+				max-width: 24em;
+				/* background-color: transparent; */
+			}
 			.match {
 				text-decoration: underline;
 			}
 		</style>
 	</head>
 	<body>
-		<input id="input" />
+		<header><div>Convert Decimals to Fractions</div></header>
+		<input id="input" value="1.61" aria-label="Decimal" />
 		<pre id="output"></pre>
 		<script src="main.mjs"></script>
 	</body>

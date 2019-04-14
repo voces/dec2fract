@@ -15,7 +15,7 @@ const format = ( target, approx ) => {
 
 };
 
-input.addEventListener( "keyup", () => {
+const calculate = () => {
 
 	const target = parseFloat( input.value );
 
@@ -47,4 +47,9 @@ input.addEventListener( "keyup", () => {
 
 	pre.innerHTML = approximations.join( "\n" );
 
-} );
+}
+
+input.addEventListener( "keyup", calculate );
+
+input.select();
+calculate();
