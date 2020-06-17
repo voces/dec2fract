@@ -1,6 +1,0 @@
-{
-    "extends": [ "verit" ],
-    "rules": {
-        "no-extra-parens": [ "error" ]
-    }
-}

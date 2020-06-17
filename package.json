@@ -9,8 +9,11 @@
   "author": "verit",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^5.15.3",
-    "eslint-config-mdcs": "^4.2.3",
-    "eslint-config-verit": "^1.0.2"
+    "eslint": "^7.2.0",
+    "eslint-config-mdcs": "^5.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-verit": "^1.0.4",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5"
   }
 }
