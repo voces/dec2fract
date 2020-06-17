@@ -18,17 +18,27 @@ const format = (target, approx) => {
 	)}`;
 };
 
-const fractToDec = (fract) => {
-	const [n, d] = fract.split("/").map((v) => parseFloat(v));
-	return n / d;
+let last = 1.61;
+
+const eval2 = (str) => {
+	try {
+		return parseFloat(eval(str));
+	} catch (err) {
+		return NaN;
+	}
 };
 
 const calculate = () => {
-	const target = input.value.includes("/")
-		? fractToDec(input.value)
+	const target = isNaN(input.value)
+		? eval2(input.value)
 		: parseFloat(input.value);
 
-	if (isNaN(target)) return;
+	if (isNaN(target)) {
+		input.setAttribute("placeholder", last);
+		return;
+	}
+
+	last = target;
 
 	if (target === Math.floor(target))
 		return (pre.innerHTML = `${target}/1 = ${target}`);
@@ -62,7 +72,7 @@ const calculate = () => {
 	pre.innerHTML = approximations.join("\n");
 };
 
-input.addEventListener("keyup", calculate);
+input.addEventListener("input", calculate);
 
 input.select();
 calculate();
