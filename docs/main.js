@@ -1,4 +1,5 @@
 const input = document.querySelector("input");
+const link = document.querySelector(".link");
 const pre = document.querySelector("pre");
 
 const format = (target, approx) => {
@@ -28,10 +29,11 @@ const eval2 = (str) => {
 	}
 };
 
+const getTarget = () =>
+	isNaN(input.value) ? eval2(input.value) : parseFloat(input.value);
+
 const calculate = () => {
-	const target = isNaN(input.value)
-		? eval2(input.value)
-		: parseFloat(input.value);
+	const target = getTarget();
 
 	if (isNaN(target)) {
 		input.setAttribute("placeholder", last);
@@ -39,6 +41,11 @@ const calculate = () => {
 	}
 
 	last = target;
+
+	link.setAttribute(
+		"href",
+		location.origin + location.pathname + "#" + target,
+	);
 
 	if (target === Math.floor(target))
 		return (pre.innerHTML = `${target}/1 = ${target}`);
@@ -76,3 +83,32 @@ input.addEventListener("input", calculate);
 
 input.select();
 calculate();
+
+if (location.hash.length > 1) {
+	const num = parseFloat(location.hash.slice(1));
+	if (!isNaN(num)) input.value = num;
+}
+
+link.addEventListener("click", (e) => {
+	const target = getTarget();
+	if (isNaN(target)) return;
+	const url = location.origin + location.pathname + "#" + target;
+	const el = document.createElement("textarea");
+	el.value = url;
+	el.setAttribute("readonly", "");
+	el.style.position = "absolute";
+	el.style.left = "-9999px";
+	document.body.appendChild(el);
+	el.select();
+	document.execCommand("copy");
+	document.body.removeChild(el);
+
+	const copied = document.createElement("span");
+	copied.textContent = "Copied!";
+	copied.classList.add("copied");
+	copied.style.top = e.pageY + "px";
+	copied.style.left = e.pageX + "px";
+	document.body.append(copied);
+	setTimeout(() => copied.classList.add("fade"), 1500);
+	setTimeout(() => document.body.removeChild(copied), 2500);
+});
